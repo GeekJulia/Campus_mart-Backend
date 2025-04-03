@@ -1,0 +1,43 @@
+REASONS FOR THIS POST OPERATIONS:
+In an authentication system, the reason we don't directly check the values passed from the HTML form 
+(like username and password) against the database without a POST request or similar mechanism is for several reasons 
+related to security and proper data handling:
+
+1) Separation of Concerns: In a typical web application, the client (HTML) and the server (backend) have
+ separate responsibilities. The HTML is for presenting the form and collecting data, while the backend handles the logic, 
+ database access, and security. By using a POST request, you're maintaining a clear boundary between user interaction (frontend)
+  and data handling (backend).
+
+2)Security: Passwords, in particular, should never be handled directly by the frontend. 
+When a user submits their password, it should be securely hashed and stored on the server, never sent or 
+stored as plain text. Using a POST request ensures you can handle this securely on the server side.
+
+3)Data Validation and Sanitization: With the POST request, you have full control over validating and sanitizing the 
+data received from the frontend before interacting with the database. This prevents issues like SQL injection or 
+invalid data from being processed.
+
+4)CRUD Operations: When creating a new user, you're typically adding their information (e.g., username, password, email) 
+into a database, which is a create operation. This should be done using a POST request, as it signifies that the client wants 
+to create new data. GET requests (like those for checking credentials) are meant to retrieve data and should not modify the state 
+of the server (i.e., inserting or updating data).
+
+5) RESTful Convention: In RESTful APIs, each type of HTTP request (GET, POST, PUT, DELETE) has a defined purpose.
+ POST is used for creating new resources, such as users, while GET is used for retrieving existing resources (like verifying 
+ a user's credentials). Using a POST request follows these conventions.
+
+6) Session and Token Management: Authentication often involves generating a session or a token (like JWT) after 
+verifying the user's credentials. This process, which can be handled securely on the server side, is done after the 
+POST request and typically involves setting cookies or returning tokens to the client.
+
+So, in summary, the POST request is necessary to maintain security, proper data handling, and adherence to web standards. 
+It ensures that sensitive information like passwords is managed securely, that operations are performed correctly, 
+and that user actions are clearly separated from data handling.
+
+HASHING OF A PASSWORD 
+We create a salt and hash the salt together with the original password, to create a hashed password
+we do not hash the password directly, because every single password will have the same hash
+and this will make it easy for malicious people to crack, so we have a salt that is always different for a different user and we hash
+it with the password to carry that distinction
+hash(salt + "password"), we store the salt along with the password
+
+Luckily for us bcrypt takes care of that.

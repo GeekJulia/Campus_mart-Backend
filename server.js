@@ -45,7 +45,16 @@ app.post("/users/login", async (req,res) => {
     }
 })
 
-app.delete
+app.delete("/users/:name", (req,res) => {
+    const user = users.find(user => user.name === req.params.name);
+
+    if(user === -1){
+        return res.status(404).send("User not Found")
+    }
+
+    users.splice(user,1)
+    res.send("User deleted sucessfully")
+})
 
 
 app.listen(3000, () => {console.log("Server is listening on port 3000")})

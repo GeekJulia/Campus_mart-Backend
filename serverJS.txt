@@ -67,3 +67,10 @@ Endpoint: A specific function that handles a request at a route (the app.get(...
 IncomingUser will hold the first matched user object (i.e., the object where user.name === req.body.name).
 Once we have that matched user, IncomingUser.password refers to that user's password in the array,
  which is what we need to compare with the password the user entered (req.body.password).
+
+ 
+No, Postman is not an API like FastAPI. Postman is a tool used for testing, developing, and documenting APIs. 
+It allows developers to send HTTP requests to APIs, inspect responses, and organize collections of requests for testing purposes.
+On the other hand, FastAPI is a web framework for building APIs, specifically designed for creating 
+RESTful APIs with Python. It helps you define endpoints, handle requests, and manage API logic, allowing you to build and deploy APIs.
+So, Postman is for interacting with APIs, while FastAPI is for building them.

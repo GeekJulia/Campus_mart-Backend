@@ -26,7 +26,7 @@ app.post("/users", async (req,res) => { //create a user,hashing the password and
         res.status(500).send()
     }
 })
-
+//testing
 app.post("/users/login", async (req,res) => {
     const user = users.find(user => user.name === req.body.name)
     if(user == null){

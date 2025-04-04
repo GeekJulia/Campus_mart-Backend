@@ -58,3 +58,12 @@ app.delete("/users/:name", (req,res) => {
 
 
 app.listen(3000, () => {console.log("Server is listening on port 3000")})
+
+Is This an Endpoint or a Route?
+This code defines a route with an endpoint in an Express.js server. Here's the distinction:
+Route: The path of the request ("/verifyUser" in this case).
+Endpoint: A specific function that handles a request at a route (the app.get(...) function here).
+
+IncomingUser will hold the first matched user object (i.e., the object where user.name === req.body.name).
+Once we have that matched user, IncomingUser.password refers to that user's password in the array,
+ which is what we need to compare with the password the user entered (req.body.password).
